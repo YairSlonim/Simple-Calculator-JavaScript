@@ -22,6 +22,9 @@ class Calculator {
 
     chooseOperator(o) {
         if (this.currentTempNumber == '') return;
+        if (this.tempOperator != '') {
+            this.equals();
+        }
         this.tempOperator = o;
         this.previousTempNumber = this.currentTempNumber;
         this.currentTempNumber = '';
