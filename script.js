@@ -1,8 +1,9 @@
 class Calculator {
+
     constructor(previousNumber, currentNumber) {
         this.previousNumber = previousNumber;
         this.currentNumber = currentNumber;
-        this.clear()
+        this.clear();
     }
 
     clear() {
@@ -55,7 +56,12 @@ class Calculator {
                 computation = prev * current;
                 break;
             case '÷':
-                computation = prev / current;
+                if(current == 0){
+                    computation = 0; 
+                }else{
+                    computation = prev / current;
+                }
+                
                 break;
             default:
                 return;
