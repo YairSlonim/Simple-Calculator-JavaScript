@@ -31,7 +31,7 @@ class Calculator {
         this.currentTempNumber = '';
     }
     display() {
-        this.currentNumber.innerText = this.currentTempNumber;
+        this.currentNumber.innerText = this.currentTempNumber.toLocaleString();
         if (this.tempOperator != null) {
             this.previousNumber.innerText = (this.previousTempNumber + " " + this.tempOperator)
         } else {
@@ -61,7 +61,6 @@ class Calculator {
                 }else{
                     computation = prev / current;
                 }
-                
                 break;
             default:
                 return;
