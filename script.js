@@ -13,7 +13,7 @@ class Calculator {
     }
 
     append(number) {
-        if (number == '.' && this.currentTempNumber.includes('.')) return
+        if (number == '.' && this.currentTempNumber.toString().includes('.')) return
         this.currentTempNumber = this.currentTempNumber.toString() + number.toString();
 
     }
@@ -30,10 +30,28 @@ class Calculator {
         this.previousTempNumber = this.currentTempNumber;
         this.currentTempNumber = '';
     }
+
+    beforeDisplay(number){
+        const stringNumber = number.toString();
+        let integerNumber = parseFloat(stringNumber.split('.')[0])
+        let decimalNumber = stringNumber.split('.')[1]
+        if(isNaN(integerNumber)){
+            integerNumber = '';
+        }
+        else{
+            integerNumber = integerNumber.toLocaleString();
+        }
+        if (decimalNumber != null) {
+            return `${integerNumber}.${decimalNumber}`
+          } else {
+            return integerNumber
+          }
+    }
+
     display() {
-        this.currentNumber.innerText = this.currentTempNumber.toLocaleString();
+        this.currentNumber.innerText = this.beforeDisplay(this.currentTempNumber)
         if (this.tempOperator != null) {
-            this.previousNumber.innerText = (this.previousTempNumber + " " + this.tempOperator)
+            this.previousNumber.innerText = (this.beforeDisplay(this.previousTempNumber) + " " + this.tempOperator)
         } else {
             this.previousNumber.innerText = '';
         }
